@@ -13,3 +13,4 @@ HEADERS += patcher.h \
 FORMS += patcher.ui \
     about.ui
 RESOURCES += mh_res.qrc
+win32:RC_FILE = windows_icon.rc
