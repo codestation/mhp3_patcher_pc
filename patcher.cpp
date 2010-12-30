@@ -50,7 +50,7 @@ void Patcher::on_iso_search_clicked() {
     QString file = QFileDialog::getOpenFileName(this,
          tr("Abrir ISO"), NULL, tr("Imagen iso (*.iso)"));
     if(!file.isEmpty()) {
-        ui->iso_path->insertPlainText(file);
+        ui->iso_path->setText(file);
         filename = file;
     }
 }
