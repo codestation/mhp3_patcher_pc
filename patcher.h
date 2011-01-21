@@ -46,8 +46,8 @@ private:
     QString patchname;
     static const char signature[];
 
-    quint32 patch_offset[32];
-    quint32 patch_size[32];
+    quint32 patch_offset[256];
+    quint32 patch_size[256];
     quint32 patch_count;
     qint64 data_start;
 
