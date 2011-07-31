@@ -19,6 +19,8 @@
 
 #include <QFileDialog>
 #include <QFile>
+#include <stdio.h>
+#include <string.h>
 #include "patcher.h"
 #include "ui_patcher.h"
 #include "about.h"
@@ -58,6 +60,8 @@ void Patcher::on_iso_search_clicked() {
 void Patcher::fill_tables(QFile *patchfile) {
     patchfile->seek(0);
     patchfile->read(reinterpret_cast<char *>(&patch_count), 4);
+    patch_offset = new quint32[patch_count];
+    patch_size = new quint32[patch_count];
     for(unsigned int i = 0; i < patch_count; i++) {
         patchfile->read(reinterpret_cast<char *>(&patch_offset[i]), 4);
         patchfile->read(reinterpret_cast<char *>(&patch_size[i]), 4);
@@ -88,6 +92,8 @@ void Patcher::write_file(QFile *iso, QString patchfile, int mode) {
             ui->msg_list->addItem(message);
         }
         patch.close();
+        delete []patch_offset;
+        delete []patch_size;
         ui->msg_list->addItem("Parcheo completado");
     } else {
         ui->msg_list->addItem("Archivo de parcheo no encontrado");
