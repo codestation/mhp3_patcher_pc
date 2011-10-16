@@ -35,8 +35,8 @@ Patcher::Patcher(QWidget *parent) :
     ui(new Ui::Patcher)
 {
     ui->setupUi(this);
-    memset(patch_offset, 0, sizeof(patch_offset));
-    memset(patch_size, 0, sizeof(patch_size));
+    patch_offset = NULL;
+    patch_size = NULL;
     ui->patch_list->addItem(PATCH_FILE);
     ui->patch_list->addItem(PATCH_RESTOREFILE);
     ui->patch_list->setCurrentIndex(0);
