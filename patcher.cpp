@@ -35,8 +35,6 @@ Patcher::Patcher(QWidget *parent) :
     ui(new Ui::Patcher)
 {
     ui->setupUi(this);
-    memset(patch_offset, 0, sizeof(patch_offset));
-    memset(patch_size, 0, sizeof(patch_size));
     ui->patch_list->addItem(PATCH_FILE);
     ui->patch_list->addItem(PATCH_RESTOREFILE);
     ui->patch_list->setCurrentIndex(0);
@@ -62,6 +60,8 @@ void Patcher::fill_tables(QFile *patchfile) {
     patchfile->read(reinterpret_cast<char *>(&patch_count), 4);
     patch_offset = new quint32[patch_count];
     patch_size = new quint32[patch_count];
+    memset(patch_offset, 0, sizeof(quint32) * patch_count);
+    memset(patch_size, 0, sizeof(quint32) * patch_count);
     for(unsigned int i = 0; i < patch_count; i++) {
         patchfile->read(reinterpret_cast<char *>(&patch_offset[i]), 4);
         patchfile->read(reinterpret_cast<char *>(&patch_size[i]), 4);
