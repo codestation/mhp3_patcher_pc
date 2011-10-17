@@ -73,7 +73,7 @@ void Patcher::fill_tables(QFile *patchfile) {
 
 void Patcher::write_file(QFile *iso, QString patchfile, int mode) {
     char buffer[1024];
-    char message[64];
+    QString message;
     QFile patch(patchfile);
     if(patch.open(QIODevice::ReadOnly)) {
         fill_tables(&patch);
@@ -86,17 +86,17 @@ void Patcher::write_file(QFile *iso, QString patchfile, int mode) {
                 iso->write(buffer, 1024);
             }
             if(mode == 0)
-                sprintf(message, "Aplicando parche (%i/%i)...OK", i+1, patch_count);
+                message = QString(tr("Aplicando parche (%1/%2)...OK")).arg(i+1).arg(patch_count);
             else
-                sprintf(message, "Quitando parche (%i/%i)...OK", i+1, patch_count);
+                message = QString(tr("Quitando parche (%1/%2)...OK")).arg(i+1).arg(patch_count);
             ui->msg_list->addItem(message);
         }
         patch.close();
         delete []patch_offset;
         delete []patch_size;
-        ui->msg_list->addItem("Parcheo completado");
+        ui->msg_list->addItem(tr("Parcheo completado"));
     } else {
-        ui->msg_list->addItem("Archivo de parcheo no encontrado");
+        ui->msg_list->addItem(tr("Archivo de parcheo no encontrado"));
     }
 }
 
@@ -109,19 +109,19 @@ void Patcher::on_iso_patch_clicked() {
             char buffer[16];
             if(file.read(buffer, sizeof(buffer)) == 16) {
                 if(!memcmp(buffer, signature, 16)) {
-                    ui->msg_list->addItem("data.bin encontrado, comenzando parcheo");
+                    ui->msg_list->addItem(tr("data.bin encontrado, comenzando parcheo"));
                     write_file(&file, ui->patch_list->currentText(), ui->patch_list->currentIndex());
                 } else {
-                    ui->msg_list->addItem("data.bin no encontrado dentro del ISO");
+                    ui->msg_list->addItem(tr("data.bin no encontrado dentro del ISO"));
                 }
             } else {
-                ui->msg_list->addItem("No se pudo leer correctamente la ISO");
+                ui->msg_list->addItem(tr("No se pudo leer correctamente la ISO"));
             }
         } else {
-            ui->msg_list->addItem("No se pudo abrir la ISO");
+            ui->msg_list->addItem(tr("No se pudo abrir la ISO"));
         }
     } else {
-        ui->msg_list->addItem("Debe seleccionar una ISO");
+        ui->msg_list->addItem(tr("Debe seleccionar una ISO"));
     }
 }
 
