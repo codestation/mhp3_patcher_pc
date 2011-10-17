@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Acerca de</string>
   </property>
+  <property name="locale">
+   <locale language="Spanish" country="UnitedStates"/>
+  </property>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
