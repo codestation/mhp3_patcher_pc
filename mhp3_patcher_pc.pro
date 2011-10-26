@@ -12,5 +12,6 @@ HEADERS += patcher.h \
     about.h
 FORMS += patcher.ui \
     about.ui
+TRANSLATIONS += mhp3_patcher_pc_en.ts
 RESOURCES += mh_res.qrc
 win32:RC_FILE = windows_icon.rc

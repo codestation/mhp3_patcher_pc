@@ -25,6 +25,9 @@
   <property name="windowTitle">
    <string>MHP3rd patcher v1.4</string>
   </property>
+  <property name="locale">
+   <locale language="Spanish" country="UnitedStates"/>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">

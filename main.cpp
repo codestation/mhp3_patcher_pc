@@ -18,11 +18,24 @@
  */
 
 #include <QtGui/QApplication>
+#include <QTranslator>
+#include <QLibraryInfo>
+#include <QLocale>
 #include "patcher.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_" + QLocale::system().name(),
+        QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+     a.installTranslator(&qtTranslator);
+
+    QTranslator myappTranslator;
+    myappTranslator.load("mhp3_patcher_pc_" + QLocale::system().name(), QCoreApplication::applicationDirPath());
+    a.installTranslator(&myappTranslator);
+
     Patcher w;
     w.show();
 
