@@ -1,0 +1,8 @@
+mhp3_patcher_pc
+mhp3_patcher_pc.exe
+.qmake.stash
+Makefile
+moc_*
+qrc_*
+ui_*.h
+*.o

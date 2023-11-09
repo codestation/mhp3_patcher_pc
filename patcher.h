@@ -44,7 +44,7 @@ private:
 
     QString filename;
     QString patchname;
-    static const char signature[];
+    static const uint8_t signature[];
 
     quint32 *patch_offset;
     quint32 *patch_size;

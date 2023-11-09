@@ -1,8 +1,7 @@
 # -------------------------------------------------
 # Project created by QtCreator 2010-12-30T12:49:15
 # -------------------------------------------------
-QT += core \
-    gui
+QT += core gui widgets
 TARGET = mhp3_patcher_pc
 TEMPLATE = app
 SOURCES += main.cpp \
